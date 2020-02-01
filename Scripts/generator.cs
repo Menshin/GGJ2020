@@ -29,35 +29,12 @@ public class generator : MonoBehaviour
 
     	parseTbo();
 
-        //Debug.Log("Length " + gen_faces.Length);
     	for (int i = 0; i < gen_faces.Length / 6; i++)
     	{
-           // Debug.Log("id " + i);
     		generate(i);
     	}
 
-        //gameObject.AddComponent<MeshFilter>();
-        //gameObject.AddComponent<MeshRenderer>();
-
-        //mesh = new Mesh();
-        //GetComponent<MeshFilter>().mesh = mesh;
-    	/*mesh = GetComponent<MeshFilter>().mesh;
-        mesh.vertices = gen_vertices;
-
-        int[] triangles = gen_triangle;
-
-        mesh.triangles = triangles;
-
-        Vector2[] uvs = new Vector2[gen_vertices.Length];
-
-        for (int i = 0; i < uvs.Length; i++)
-        {
-            uvs[i] = new Vector2(gen_vertices[i].x, gen_vertices[i].z);
-        }
-        mesh.uv = uvs;
-
-        mesh.RecalculateNormals();*/
-        //GenerateSecondaryUvSet(GetComponent<MeshFilter>().sharedMesh);
+        LinkCell();
     }
 
     // Update is called once per frame
@@ -126,31 +103,29 @@ public class generator : MonoBehaviour
 
     void generate(int id)
     {
-    	var face = new int[6];
-       // Debug.Log(id);
+    	var face = new int[6]; 
     	for (int i = 0; i < 6; i++)
         {
-            Debug.Log("vertices id " + gen_faces[id, i]);
     		face[i] = gen_faces[id, i];
         }
     	var ctr = center[id];
         child[id] = new GameObject("cell");
     	child[id].AddComponent<MeshRenderer>();
     	child[id].AddComponent<MeshFilter>();
+        child[id].AddComponent<Cell>();
     	var mesh = child[id].GetComponent<MeshFilter>().mesh;
     	int len;
 
-        Debug.Log(face[5]);
 
     	if (face[5] == -1)
     		len = 6;
     	else
     		len = 7;
  		var vertices_work = new Vector3[len];
+        Vector2[] uv = new Vector2[mesh.vertices.Length];
     	for (int i = 0; i < len - 1; i++)
     	{
     		vertices_work[i] = gen_vertices[face[i]];
-            Debug.Log(gen_vertices[face[i]]);
             //Debug.Log("id " + id +  " i " + i);
     	}
        // Debug.Log("verticles i " + (len));
@@ -163,10 +138,10 @@ public class generator : MonoBehaviour
             //Debug.Log("i " + i);
             if (i != len - 2)
             {
-    		triangles_work[i * 3] = i;
-    		triangles_work[(i * 3) + 1] = i + 1;
-    		triangles_work[(i * 3) + 2] = len - 1; //6 if hexagone, 5 if pentagone
-    												//for the center verticles
+    		  triangles_work[i * 3] = i;
+    		  triangles_work[(i * 3) + 1] = i + 1;
+    		  triangles_work[(i * 3) + 2] = len - 1; //6 if hexagone, 5 if pentagone
+            										//for the center verticles
             }
             else
             {
@@ -176,16 +151,6 @@ public class generator : MonoBehaviour
             }
             //Debug.Log(mesh.triangles[i * 3] + " " + mesh.triangles[(i * 3) + 1] + " " + mesh.triangles[(i * 3) + 2]);
     	}
-        Debug.Log("=======");
-        foreach(var a in vertices_work)
-        {
-            Debug.Log(a);
-        }
-        Debug.Log("________");
-        foreach(var a in triangles_work)
-        {
-            Debug.Log(a);
-        }
        /* mesh.vertices = new Vector3[] {
             new Vector3(0,0,0),
             new Vector3(0,1,0),
@@ -198,6 +163,55 @@ public class generator : MonoBehaviour
         mesh.vertices = vertices_work;
         mesh.triangles = triangles_work;
 
+        
+        if (len == 7)
+        {
+            mesh.uv =          new Vector2[]
+        {
+            new Vector2(0.5f, 0f),
+            new Vector2( 1f, 75f / 300f),
+            new Vector2( 1f, 226f / 300f),
+            new Vector2(0.5f,1f),
+            new Vector2( 0f, 226f / 300f),
+            new Vector2( 0f, 75f / 300f),
+            new Vector2(0.5f, 0.5f)
+        }  ;
+        }
+        else
+        {
+            mesh.uv          = new Vector2[]
+        {
+            new Vector2(0f,0.5f),
+            new Vector2( 0f, 75f / 300f),
+            new Vector2( 0f, 223f / 300f),
+            new Vector2(1f,0.5f),
+            new Vector2( 0f, 223f / 300f),
+            new Vector2(0.5f, 0.5f)
+        };
+        }
+
+
+
+
+
+
         mesh.RecalculateNormals();
+    }
+
+    void LinkCell()
+    {
+        for (int i = 0; i < child.Length; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                int id = liaison[i, j];
+                if (id != -1)
+                {
+                    child[i].GetComponent<Cell>().AddNeighbour(
+                        child[id].GetComponent<Cell>()
+                    );
+                }
+            }
+        }
     }
 }
