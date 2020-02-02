@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6577646326111875213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6577646326111875212}
+  - component: {fileID: 6693609444016314338}
+  m_Layer: 0
+  m_Name: PlanetEmpty
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6577646326111875212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6577646326111875213}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.57898086, y: -0.29077128, z: -0.2463639}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6693609444016314338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6577646326111875213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbfd3b86b70692c40a672f7f5a8983e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  child: []
+  DeadBiome:
+  - {fileID: 2100000, guid: 4580f07047e6b324f99678890808e092, type: 2}
+  - {fileID: 2100000, guid: b14eb79035008374ea4237515c214d82, type: 2}
+  - {fileID: 2100000, guid: 2dd9302e28aeb7649bf21e9a838749af, type: 2}
+  - {fileID: 2100000, guid: 08624b5693cae62438cd424866013c3a, type: 2}
+  - {fileID: 2100000, guid: cbc91ac78f7470c48bf11abc0343347f, type: 2}
+  - {fileID: 2100000, guid: dd49c7074f2873448940a1f1595fd5c6, type: 2}
+  LiveBiome:
+  - {fileID: 2100000, guid: 8860e44776e4b7d45813255618e763bd, type: 2}
+  - {fileID: 2100000, guid: f664498d223d9ca45adea368accf51dd, type: 2}
+  - {fileID: 2100000, guid: 10f666b8f8791e94fb756b69a23f8456, type: 2}
+  - {fileID: 2100000, guid: c4ad64bdc66a1924abb5ecd6fb877b49, type: 2}
+  - {fileID: 2100000, guid: 26a0887e819f4684cb1787e773e630ea, type: 2}
+  - {fileID: 2100000, guid: 76ef802d3f8b1c140a6d96d8a81ec471, type: 2}
+  herb:
+  - {fileID: 21300000, guid: 6019f7c269e30eb44a030ba128be2b02, type: 3}
+  - {fileID: 21300000, guid: 2c35c4f83589367439f0640c74735cfd, type: 3}
+  - {fileID: 21300000, guid: 90bf32e8a0dc807489560f1e32be6e47, type: 3}
+  - {fileID: 21300000, guid: f34ab76ce1f1904429377f33c5d3acf6, type: 3}
+  - {fileID: 21300000, guid: 0fb535807f5bcfb42893893f4ab62114, type: 3}
+  - {fileID: 21300000, guid: b86b5c9658d93f94c8d1a738dacd5fd1, type: 3}
+  carnivore:
+  - {fileID: 21300000, guid: 5bc462bd43f9eed4f9e8aa90793ea317, type: 3}
+  - {fileID: 21300000, guid: d0ec514b7b2f28e42a8e51982a2ae3d7, type: 3}
+  - {fileID: 21300000, guid: de57e15bb3060d547ae54473c69d6ed5, type: 3}
+  - {fileID: 21300000, guid: f455d10597e50f6439c2f0ddb678f359, type: 3}
+  - {fileID: 21300000, guid: fecdb4151b16ec6478fb7356100ada1e, type: 3}
+  - {fileID: 21300000, guid: 54ed38ea9b3da2347aa8ed1a41976514, type: 3}
+  nature:
+  - {fileID: 21300000, guid: 8488c7ec6a57f7b449ba6f542598a1f7, type: 3}
+  - {fileID: 21300000, guid: 519e7b1de608bc441946c622cb3ad9ae, type: 3}
+  - {fileID: 21300000, guid: 11de768147b2628499a378049ff8edfc, type: 3}
+  - {fileID: 21300000, guid: fa9d7adcd92767243966f5059cf4f6d1, type: 3}
+  - {fileID: 21300000, guid: 3421161d14e9d5443b84b8b0bb864017, type: 3}
+  - {fileID: 21300000, guid: a9d5e9a52efff9648a5ea9c7d803e673, type: 3}
+  defaultSprite: {fileID: 0}

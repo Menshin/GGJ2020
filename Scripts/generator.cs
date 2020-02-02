@@ -18,7 +18,12 @@ public class generator : MonoBehaviour
 	public int[,] liaison;
 
     public GameObject parent;
+	public Material materialExpr;
+	public Material pentaMat;
+
 	public GameObject[] child;
+
+    public GameObject parentModel;
 
 	void Awake()
 	{
@@ -27,7 +32,7 @@ public class generator : MonoBehaviour
 
     void Start()
     {
-        parent = new GameObject("planet");
+        parent = Instantiate(parentModel) as GameObject;
     	parseTbo();
 
     	for (int i = 0; i < gen_faces.Length / 6; i++)
@@ -111,7 +116,7 @@ public class generator : MonoBehaviour
     		face[i] = gen_faces[id, i];
         }
     	var ctr = center[id];
-        child[id] = new GameObject("cell");
+        child[id] = new GameObject("cell_" + id);
     	child[id].AddComponent<MeshRenderer>();
     	child[id].AddComponent<MeshFilter>();
         child[id].AddComponent<Cell>();
@@ -121,9 +126,15 @@ public class generator : MonoBehaviour
 
 
     	if (face[5] == -1)
+        {
+            child[id].GetComponent<MeshRenderer>().material = pentaMat;
     		len = 6;
+        }
     	else
+        {
+            child[id].GetComponent<MeshRenderer>().material = materialExpr;
     		len = 7;
+        }
  		var vertices_work = new Vector3[len];
         Vector2[] uv = new Vector2[mesh.vertices.Length];
     	for (int i = 0; i < len - 1; i++)
@@ -154,7 +165,7 @@ public class generator : MonoBehaviour
         
         if (len == 7)
         {
-            mesh.uv =          new Vector2[]
+            mesh.uv = new Vector2[]
         {
             new Vector2(0.5f, 0f),
             new Vector2( 1f, 75f / 300f),
@@ -167,7 +178,7 @@ public class generator : MonoBehaviour
         }
         else
         {
-            mesh.uv          = new Vector2[]
+            mesh.uv = new Vector2[]
         {
             new Vector2(0f,0.5f),
             new Vector2( 0f, 75f / 300f),
@@ -180,6 +191,7 @@ public class generator : MonoBehaviour
 
         mesh.RecalculateNormals();
         child[id].GetComponent<MeshCollider>().sharedMesh = mesh;
+        child[id].GetComponent<Cell>().center = vertices_work[len - 1];
         return child[id];
     }
 

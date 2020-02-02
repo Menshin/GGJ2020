@@ -5,8 +5,8 @@ using System;
 
 public class CameraMove : MonoBehaviour
 {
-	public GameObject planet;
     public Vector3 click_pos;
+    public AudioManager audio;
     public Vector3 transit = Vector3.zero;
 
     // Start is called before the first frame update
@@ -30,23 +30,28 @@ public class CameraMove : MonoBehaviour
     	Vector3 vec = Vector3.zero;
         Vector3 mousepos = Vector3.zero;
         float speed = 90.0f;
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) || Input.GetMouseButton(0))
         {
             Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, 10.0f))
             {
+
                 ray = new Ray(Vector3.zero, hit.point);
-                transit = ray.GetPoint(3.0f);
+                if (Input.GetMouseButtonDown(1))
+                    transit = ray.GetPoint(2.0f);
+                Debug.Log(hit.collider.gameObject);
+                var cell = hit.collider.gameObject.GetComponent<Cell>();
+                audio.LaunchBiomeAudio(cell.ibiome, cell.alive);
             }
         }
 
         if (Input.GetMouseButton (2))
         {
             transit = Vector3.zero;
-            transform.RotateAround(planet.transform.position, Vector3.up, 500.0f * Input.GetAxis("Mouse X") * Time.deltaTime);
-            transform.RotateAround(planet.transform.position, transform.right, 500.0f * -Input.GetAxis("Mouse Y") * Time.deltaTime);
+            transform.RotateAround(Vector3.zero, Vector3.up, 500.0f * Input.GetAxis("Mouse X") * Time.deltaTime);
+            transform.RotateAround(Vector3.zero, transform.right, 500.0f * -Input.GetAxis("Mouse Y") * Time.deltaTime);
         }
         if (transit != Vector3.zero)
             StartCoroutine("MoveFunction");
@@ -58,6 +63,6 @@ public class CameraMove : MonoBehaviour
         	vec += transform.right;
         if (Input.GetKey("down"))
         	vec += -transform.right;
-        transform.RotateAround(planet.transform.position, vec, speed * Time.deltaTime);
+        transform.RotateAround(Vector3.zero, vec, speed * Time.deltaTime);
     }
 }
