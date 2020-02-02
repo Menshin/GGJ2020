@@ -23,6 +23,8 @@ public class generator : MonoBehaviour
 
 	public GameObject[] child;
 
+    public GameObject parentModel;
+
 	void Awake()
 	{
 		srcfile = "Assets/" + srcfile;
@@ -30,7 +32,7 @@ public class generator : MonoBehaviour
 
     void Start()
     {
-        parent = new GameObject("planet");
+        parent = Instantiate(parentModel) as GameObject;
     	parseTbo();
 
     	for (int i = 0; i < gen_faces.Length / 6; i++)
@@ -114,7 +116,7 @@ public class generator : MonoBehaviour
     		face[i] = gen_faces[id, i];
         }
     	var ctr = center[id];
-        child[id] = new GameObject("cell");
+        child[id] = new GameObject("cell_" + id);
     	child[id].AddComponent<MeshRenderer>();
     	child[id].AddComponent<MeshFilter>();
         child[id].AddComponent<Cell>();
