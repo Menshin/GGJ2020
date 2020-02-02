@@ -6,6 +6,7 @@ using System;
 public class CameraMove : MonoBehaviour
 {
     public Vector3 click_pos;
+    public AudioManager audio;
     public Vector3 transit = Vector3.zero;
 
     // Start is called before the first frame update
@@ -36,10 +37,13 @@ public class CameraMove : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 10.0f))
             {
+
                 ray = new Ray(Vector3.zero, hit.point);
                 if (Input.GetMouseButtonDown(1))
                     transit = ray.GetPoint(2.0f);
                 Debug.Log(hit.collider.gameObject);
+                var cell = hit.collider.gameObject.GetComponent<Cell>();
+                audio.LaunchBiomeAudio(cell.ibiome, cell.alive);
             }
         }
 

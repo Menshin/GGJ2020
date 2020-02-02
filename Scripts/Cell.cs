@@ -14,6 +14,9 @@ public class Cell : MonoBehaviour
     public int ibiome = -1;
     public int ianimal = -1;
 
+    public static int cellAlive = 0;
+    public static int cellTotal = 0;
+
     public static Material[] DeadBiome;
     public static Material[] LiveBiome;
     public static Sprite[] herb;
@@ -32,16 +35,16 @@ public class Cell : MonoBehaviour
 
     void Start()
     {
+        cellTotal++;
         SetBiome(Random.Range(0, 6));
 
         GameObject c = new GameObject("animal");
         c.transform.SetParent(transform);
         c.transform.position = center;
-        c.transform.localScale = new Vector3(0.10f, 0.10f, 0.10f);
+        c.transform.localScale = new Vector3(0.07f, 0.070f, 0.070f);
         c.AddComponent<SpriteRenderer>();
         child = c.GetComponent<SpriteRenderer>();
         child.transform.LookAt(Vector3.zero);
-        SetAnimal(0);
     }
 
     // Update is called once per frame
@@ -73,6 +76,10 @@ public class Cell : MonoBehaviour
     public void SetAlive(bool isAlive)
     {
         alive = isAlive;
+        if (isAlive)
+            cellAlive++;
+        else
+            cellAlive--; 
         SetBiome(ibiome);
     }
 

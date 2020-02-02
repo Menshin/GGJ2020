@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6577646326111875212}
   - component: {fileID: 6693609444016314338}
   m_Layer: 0
-  m_Name: Planet 1
+  m_Name: PlanetEmpty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,3 +58,25 @@ MonoBehaviour:
   - {fileID: 2100000, guid: c4ad64bdc66a1924abb5ecd6fb877b49, type: 2}
   - {fileID: 2100000, guid: 26a0887e819f4684cb1787e773e630ea, type: 2}
   - {fileID: 2100000, guid: 76ef802d3f8b1c140a6d96d8a81ec471, type: 2}
+  herb:
+  - {fileID: 21300000, guid: 6019f7c269e30eb44a030ba128be2b02, type: 3}
+  - {fileID: 21300000, guid: 2c35c4f83589367439f0640c74735cfd, type: 3}
+  - {fileID: 21300000, guid: 90bf32e8a0dc807489560f1e32be6e47, type: 3}
+  - {fileID: 21300000, guid: f34ab76ce1f1904429377f33c5d3acf6, type: 3}
+  - {fileID: 21300000, guid: 0fb535807f5bcfb42893893f4ab62114, type: 3}
+  - {fileID: 21300000, guid: b86b5c9658d93f94c8d1a738dacd5fd1, type: 3}
+  carnivore:
+  - {fileID: 21300000, guid: 5bc462bd43f9eed4f9e8aa90793ea317, type: 3}
+  - {fileID: 21300000, guid: d0ec514b7b2f28e42a8e51982a2ae3d7, type: 3}
+  - {fileID: 21300000, guid: de57e15bb3060d547ae54473c69d6ed5, type: 3}
+  - {fileID: 21300000, guid: f455d10597e50f6439c2f0ddb678f359, type: 3}
+  - {fileID: 21300000, guid: fecdb4151b16ec6478fb7356100ada1e, type: 3}
+  - {fileID: 21300000, guid: 54ed38ea9b3da2347aa8ed1a41976514, type: 3}
+  nature:
+  - {fileID: 21300000, guid: 8488c7ec6a57f7b449ba6f542598a1f7, type: 3}
+  - {fileID: 21300000, guid: 519e7b1de608bc441946c622cb3ad9ae, type: 3}
+  - {fileID: 21300000, guid: 11de768147b2628499a378049ff8edfc, type: 3}
+  - {fileID: 21300000, guid: fa9d7adcd92767243966f5059cf4f6d1, type: 3}
+  - {fileID: 21300000, guid: 3421161d14e9d5443b84b8b0bb864017, type: 3}
+  - {fileID: 21300000, guid: a9d5e9a52efff9648a5ea9c7d803e673, type: 3}
+  defaultSprite: {fileID: 0}
