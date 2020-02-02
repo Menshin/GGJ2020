@@ -10,5 +10,6 @@ public class Predateur_btn : MonoBehaviour, IPointerClickHandler
 	public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("Predateur_btn");
+        click.cellselect.SetAnimal(1);
     }
 }

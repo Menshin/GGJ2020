@@ -41,7 +41,7 @@ public class CameraMove : MonoBehaviour
                 ray = new Ray(Vector3.zero, hit.point);
                 if (Input.GetMouseButtonDown(1))
                     transit = ray.GetPoint(2.0f);
-                Debug.Log(hit.collider.gameObject);
+                //Debug.Log(hit.collider.gameObject);
                 var cell = hit.collider.gameObject.GetComponent<Cell>();
                 audio.LaunchBiomeAudio(cell.ibiome, cell.alive);
             }

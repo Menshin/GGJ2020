@@ -5,16 +5,23 @@ using UnityEngine;
 public class click : MonoBehaviour
 {
 	public Vector3 mousepos;
+
+    public static Cell cellselect;
+
+    public Planet planet;
+
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = Vector3.zero;
+        transform.position = new Vector3(-100, -100, -100);
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetKeyDown("space"))
         {
         	mousepos = Input.mousePosition;
             Ray ray = Camera.main.ScreenPointToRay(mousepos);
@@ -22,17 +29,19 @@ public class click : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 10.0f))
             {
-            	Debug.Log(Input.mousePosition);
+                 planet.biomass = 0;
+                 planet.slider.value = planet.biomass / planet.biomassMax;
+            	//Debug.Log(Input.mousePosition);
                 transform.position = (Input.mousePosition);
+
+                cellselect = hit.collider.gameObject.GetComponent<Cell>();
+
             }
+
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetKeyUp("space"))
         {
-        	if (mousepos.x > Input.mousePosition.x)
-        		Debug.Log("Proie !");
-        	else if (mousepos.x > Input.mousePosition.x)
-        		Debug.Log("Predateur !");
-            transform.position = Vector3.zero;
+            transform.position = new Vector3(-100, -100, -100);
         }
     }
 }

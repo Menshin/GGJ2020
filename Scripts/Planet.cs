@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Planet : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class Planet : MonoBehaviour
     public Sprite[] nature;
 
     public Sprite defaultSprite;
+
+    public float biomass = 0;
+    public float biomassMax = 30;
+    public Slider slider;
+
+
 	/*
 	0 Jungle, 1 Prairie, 2 Ocean, 3 Montagne, 4 Foret, 5 Desert
 	*/
@@ -25,7 +32,10 @@ public class Planet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (biomass + Time.deltaTime < biomassMax)
+            biomass += Time.deltaTime;
+
+       slider.value = biomass / biomassMax; 
     }
 
     void Terraform()
