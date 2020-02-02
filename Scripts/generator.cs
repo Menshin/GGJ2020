@@ -17,6 +17,7 @@ public class generator : MonoBehaviour
 	public Vector3[] center;
 	public int[,] liaison;
 
+    public GameObject parent;
 	public GameObject[] child;
 
 	void Awake()
@@ -26,12 +27,13 @@ public class generator : MonoBehaviour
 
     void Start()
     {
-
+        parent = new GameObject("planet");
     	parseTbo();
 
     	for (int i = 0; i < gen_faces.Length / 6; i++)
     	{
-    		generate(i);
+    		var tmp = generate(i);
+            tmp.transform.SetParent(parent.transform);
     	}
 
         LinkCell();
@@ -101,7 +103,7 @@ public class generator : MonoBehaviour
 		}
     }
 
-    void generate(int id)
+    GameObject generate(int id)
     {
     	var face = new int[6]; 
     	for (int i = 0; i < 6; i++)
@@ -113,6 +115,7 @@ public class generator : MonoBehaviour
     	child[id].AddComponent<MeshRenderer>();
     	child[id].AddComponent<MeshFilter>();
         child[id].AddComponent<Cell>();
+        child[id].AddComponent<MeshCollider>();
     	var mesh = child[id].GetComponent<MeshFilter>().mesh;
     	int len;
 
@@ -126,16 +129,11 @@ public class generator : MonoBehaviour
     	for (int i = 0; i < len - 1; i++)
     	{
     		vertices_work[i] = gen_vertices[face[i]];
-            //Debug.Log("id " + id +  " i " + i);
     	}
-       // Debug.Log("verticles i " + (len));
     	vertices_work[len - 1] = center[id];
-        //Debug.Log(mesh.vertices[len - 1]);
     	var triangles_work = new int[(len - 1) * 3];
     	for (int i = 0; i < len - 1; i++)
     	{
-            ///Debug.Log("last cicle " + (len - 2));
-            //Debug.Log("i " + i);
             if (i != len - 2)
             {
     		  triangles_work[i * 3] = i;
@@ -149,17 +147,7 @@ public class generator : MonoBehaviour
             triangles_work[(i * 3) + 1] = 0;
             triangles_work[(i * 3) + 2] = len - 1;              
             }
-            //Debug.Log(mesh.triangles[i * 3] + " " + mesh.triangles[(i * 3) + 1] + " " + mesh.triangles[(i * 3) + 2]);
     	}
-       /* mesh.vertices = new Vector3[] {
-            new Vector3(0,0,0),
-            new Vector3(0,1,0),
-            new Vector3(0,0,1)
-        };
-        mesh.triangles = new int[] {
-            0,1,2
-        };*/
-
         mesh.vertices = vertices_work;
         mesh.triangles = triangles_work;
 
@@ -190,12 +178,9 @@ public class generator : MonoBehaviour
         };
         }
 
-
-
-
-
-
         mesh.RecalculateNormals();
+        child[id].GetComponent<MeshCollider>().sharedMesh = mesh;
+        return child[id];
     }
 
     void LinkCell()
