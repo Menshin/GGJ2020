@@ -191,6 +191,7 @@ public class generator : MonoBehaviour
 
         mesh.RecalculateNormals();
         child[id].GetComponent<MeshCollider>().sharedMesh = mesh;
+        child[id].GetComponent<Cell>().center = vertices_work[len - 1];
         return child[id];
     }
 

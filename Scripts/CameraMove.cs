@@ -38,7 +38,7 @@ public class CameraMove : MonoBehaviour
             {
                 ray = new Ray(Vector3.zero, hit.point);
                 if (Input.GetMouseButtonDown(1))
-                    transit = ray.GetPoint(3.0f);
+                    transit = ray.GetPoint(2.0f);
                 Debug.Log(hit.collider.gameObject);
             }
         }

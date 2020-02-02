@@ -45,12 +45,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d2a0e0a1befe34b8c6e0df5348c04e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  srcfile: map/map80.tbo
+  srcfile: map/map5120.tbo
   gen_vertices: []
   center: []
+  parent: {fileID: 0}
   materialExpr: {fileID: 2100000, guid: 270578ad1bfcdff40ae653115bdec85e, type: 2}
   pentaMat: {fileID: 2100000, guid: 940fb7f809edf7b47b9eb5b93d2e6c1a, type: 2}
   child: []
+  parentModel: {fileID: 6577646326111875213, guid: a41bf3c87993f65488bcaf8f1013df0b,
+    type: 3}
 --- !u!23 &8069589858052630258
 MeshRenderer:
   m_ObjectHideFlags: 0

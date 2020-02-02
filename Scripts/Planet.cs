@@ -8,6 +8,11 @@ public class Planet : MonoBehaviour
 
     public Material[] DeadBiome;
     public Material[] LiveBiome;
+    public Sprite[] herb;
+    public Sprite[] carnivore;
+    public Sprite[] nature;
+
+    public Sprite defaultSprite;
 	/*
 	0 Jungle, 1 Prairie, 2 Ocean, 3 Montagne, 4 Foret, 5 Desert
 	*/
@@ -36,5 +41,8 @@ public class Planet : MonoBehaviour
     {
     	Cell.DeadBiome = Dead;
     	Cell.LiveBiome = Alive;
+    	Cell.herb = herb;
+    	Cell.carnivore = carnivore;
+    	Cell.nature = nature;
     }
 }
