@@ -41,7 +41,7 @@ public class Cell : MonoBehaviour
         GameObject c = new GameObject("animal");
         c.transform.SetParent(transform);
         c.transform.position = center;
-        c.transform.localScale = new Vector3(0.07f, 0.070f, 0.070f);
+        c.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
         c.AddComponent<SpriteRenderer>();
         child = c.GetComponent<SpriteRenderer>();
         child.transform.LookAt(Vector3.zero);
@@ -95,5 +95,12 @@ public class Cell : MonoBehaviour
             child.sprite = carnivore[ibiome];
         else
             child.sprite = nature[ibiome];
+        foreach (var voisin in neighbor)
+        {
+            if (voisin.ibiome == ibiome)
+            {
+                voisin.SetAnimal(ianimal);
+            }
+        }
     }
 }

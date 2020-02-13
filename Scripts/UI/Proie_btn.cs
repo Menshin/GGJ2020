@@ -10,5 +10,6 @@ public class Proie_btn : MonoBehaviour, IPointerClickHandler
 	public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("Proie_btn");
+        click.cellselect.SetAnimal(0);
     }
 }

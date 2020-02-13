@@ -10,5 +10,6 @@ public class Vegetal_btn : MonoBehaviour, IPointerClickHandler
 	public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("Vegetal_btn");
+        click.cellselect.SetAnimal(2);
     }
 }
