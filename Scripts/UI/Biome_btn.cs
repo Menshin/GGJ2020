@@ -6,9 +6,13 @@ using UnityEngine.EventSystems;
 
 public class Biome_btn : MonoBehaviour, IPointerClickHandler
 {
-    // Start is called before the first frame update
 	public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Biome_btn");
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            UIManager.S.CycleSelectedBiomeType();
+            return;
+        }
+        UIManager.S.selectedCell.HandleClick(UIManager.ClickEventCodes.ChangeBiome);
     }
 }

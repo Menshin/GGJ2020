@@ -5,54 +5,85 @@ using UnityEngine.UI;
 
 public class Planet : MonoBehaviour
 {
-	public List<Cell> child;
+    static public Planet S; //singleton
 
-    public Material[] DeadBiome;
-    public Material[] LiveBiome;
-    public Sprite[] herb;
-    public Sprite[] carnivore;
-    public Sprite[] nature;
+    [Header("Gameplay Variables")]
+    public float biomassUpdateDelay = 1f;
+    public float biomassIncrement = 0.25f;
+    public float perPlantIncrement = 0.645f;
+    public float perHerbivorIncrement = 2.41f;
+    public float perCarnivorIncrement = 5.05f;
+    public float biomassMax = 4f;
+    public float plantCost = 1f;
+    public float herbivorCost = 2f;
+    public float carnivorCost = 3f;
+    public float changeBiomeCost = 4f;
 
-    public Sprite defaultSprite;
-
+    [Header("To visualize only : don't touch")]
     public float biomass = 0;
-    public float biomassMax = 30;
-    public Slider slider;
+    public float cellsAlive = 0;
+    public float cellsTotal = 0;
+    public int plantsTotal = 0;
+    public int herbivorsTotal = 0;
+    public int carnivorsTotal = 0;
+    
+    private float nextBiomassUpdate;
+    private float timeMax = 300f;
 
-
-	/*
-	0 Jungle, 1 Prairie, 2 Ocean, 3 Montagne, 4 Foret, 5 Desert
-	*/
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-    	SetMaterialPckg(DeadBiome, LiveBiome);
+        if (S)
+        {
+            Debug.Log("ERROR : Instanciating more than one Planet singleton");
+        }
+
+        S = this;
+        nextBiomassUpdate = biomassUpdateDelay;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (biomass + Time.deltaTime < biomassMax)
-            biomass += Time.deltaTime;
+        //TODO
+        if(Time.time > timeMax)
+        {
+            print("Booh, perdu !");
+        }
 
-       slider.value = biomass / biomassMax; 
+        if (Time.time > nextBiomassUpdate)
+        {
+            float biomassToAdd = biomassUpdateDelay * (biomassIncrement
+                + perPlantIncrement * plantsTotal / cellsTotal
+                + perHerbivorIncrement * herbivorsTotal / cellsTotal
+                + perCarnivorIncrement * carnivorsTotal / cellsTotal);
+
+            AdjustBiomass(biomassToAdd);//biomass = Mathf.Min(biomass + biomassToAdd, biomassMax);
+            nextBiomassUpdate = Time.time + biomassUpdateDelay;
+        }
+
     }
 
-    void Terraform()
+    public void AdjustBiomass(float amount)
     {
-    	foreach (Cell children in child)
-    	{
-    		children.SetAlive(false);
-    		children.SetBiome(Random.Range(0, 6));
-    	}
+        float oldbiomass = biomass;
+        biomass = biomass = Mathf.Min(biomass + amount, biomassMax);
+
+        if(biomass != oldbiomass)
+            UIManager.S.UpdateBiomassBar();
     }
 
-    void SetMaterialPckg(Material[] Dead, Material[] Alive)
+    public void AdjustCellsAlive(int amount)
     {
-    	Cell.DeadBiome = Dead;
-    	Cell.LiveBiome = Alive;
-    	Cell.herb = herb;
-    	Cell.carnivore = carnivore;
-    	Cell.nature = nature;
+        cellsAlive += amount;
+        UIManager.S.UpdateAliveMeter();
     }
+    /*
+    //TODEL
+    private void OnGUI()
+    {
+        GUI.contentColor = Color.black;
+        GUI.Label(new Rect(20, 40, 150, 40), "BIOMASS : " + biomass);
+        GUI.Label(new Rect(20, 80, 200, 40), "Timer : " + Time.time);
+        GUI.Label(new Rect(20, 120, 200, 40), "Alive/Total : " + Planet.S.cellsAlive + "/" + Planet.S.cellsTotal);
+    }*/
+
 }

@@ -4,27 +4,39 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-	public Cell planet;
+	static public AudioManager S; //singleton
+	
+	public Planet planet;
 
 	AudioSource biomeAudioSource;
 	AudioSource themeAudioSource;
 
-
 	public AudioClip[] clips;
 	public AudioClip[] themeClips;
 
-	bool play = true;
+	/*bool play = true;
 	bool playTheme = true;
 
 	bool changePisteTheme = false;
-	bool changePiste = false;
+	bool changePiste = false;*/
 
 	int actualTheme;
 	int newTheme;
 
-    void Start()
+	private void Awake()
+	{
+		if (S)
+		{
+			Debug.Log("ERROR: shouldn't be instantiating more than one AudioManager singleton");
+		}
+
+		S = this;
+	}
+
+	void Start()
     {
-        biomeAudioSource = gameObject.AddComponent<AudioSource>();
+		planet = Planet.S;
+		biomeAudioSource = gameObject.AddComponent<AudioSource>();
         biomeAudioSource.loop = false;
 		biomeAudioSource.volume = 1f;
         themeAudioSource = gameObject.AddComponent<AudioSource>();
@@ -35,25 +47,22 @@ public class AudioManager : MonoBehaviour
         newTheme = 0;
         themeAudioSource.Play();
        /* ChangeTheme(1);*/
-
-
     }
 
-    // Update is called once per frame
     void Update()
 	{
-		if (Input.GetKey("z"))
-			Cell.cellAlive++;
-		if (Cell.cellAlive < Cell.cellTotal / 5)
+		if (planet.cellsAlive < planet.cellsTotal / 5)
 			newTheme = 0;
-		else if (Cell.cellAlive < (Cell.cellTotal / 5) * 2)
+		else if (planet.cellsAlive < (planet.cellsTotal / 5) * 2)
 			newTheme = 1;
-		else if (Cell.cellAlive < (Cell.cellTotal / 5) * 3)
+		else if (planet.cellsAlive < (planet.cellsTotal / 5) * 3)
 			newTheme = 2;
-		else if (Cell.cellAlive < (Cell.cellTotal / 5) * 4)
+		else if (planet.cellsAlive < (planet.cellsTotal / 5) * 4)
 			newTheme = 3;
-		else
-			newTheme = 4;
+		/*else
+			newTheme = 4;*/
+
+
 		if (newTheme != actualTheme)
 		{
 			ChangeTheme(newTheme);

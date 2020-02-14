@@ -9,7 +9,7 @@ public class Predateur_btn : MonoBehaviour, IPointerClickHandler
     // Start is called before the first frame update
 	public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Predateur_btn");
-        click.cellselect.SetAnimal(1);
+        if (eventData.button == PointerEventData.InputButton.Left)
+            UIManager.S.selectedCell.HandleClick(UIManager.ClickEventCodes.PutCarnivors);
     }
 }

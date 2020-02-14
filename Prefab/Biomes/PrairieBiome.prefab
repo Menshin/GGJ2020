@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5379381474658737046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5379381474658737048}
+  - component: {fileID: 5379381474658737049}
+  m_Layer: 0
+  m_Name: PrairieBiome
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5379381474658737048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5379381474658737046}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.011372566, y: 0.1349268, z: -0.10353279}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5379381474658737049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5379381474658737046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85faad67935da9a4ab7f7e6b88e37dd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  biomeName: Prairie
+  deadMat: {fileID: 2100000, guid: b14eb79035008374ea4237515c214d82, type: 2}
+  aliveMat: {fileID: 2100000, guid: f664498d223d9ca45adea368accf51dd, type: 2}
+  deadSprite: {fileID: 21300000, guid: 7ec0461bade6ab24481d58553465b95d, type: 3}
+  aliveSprite: {fileID: 21300000, guid: 293fb0d336caa35469184501069b4b5d, type: 3}
+  plantsSprite: {fileID: 21300000, guid: 519e7b1de608bc441946c622cb3ad9ae, type: 3}
+  herbivorSprite: {fileID: 21300000, guid: 2c35c4f83589367439f0640c74735cfd, type: 3}
+  carnivorSprite: {fileID: 21300000, guid: 6ca9e4748fb99014d87b1618e08828cb, type: 3}
+  soundIndex: 1
+  propsModelPrefab: {fileID: 100012, guid: 853a784bb297a144ea7929e755e741d8, type: 3}

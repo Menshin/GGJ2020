@@ -10,28 +10,26 @@ public class generator : MonoBehaviour
 {
 	Mesh mesh;
 
-	public string srcfile = "map12.tbo";
+	public string srcFile = "map12";
+    TextAsset mapFile = null;
 
-	public Vector3[] gen_vertices;
+    public Vector3[] gen_vertices;
 	public int[,] gen_faces;
 	public Vector3[] center;
 	public int[,] liaison;
 
     public GameObject parent;
 	public Material materialExpr;
-	public Material pentaMat;
+	public Material materialPenta;
 
 	public GameObject[] child;
 
     public GameObject parentModel;
 
-	void Awake()
-	{
-		srcfile = "Assets/" + srcfile;
-	}
-
-    void Start()
+    void Awake()
     {
+        mapFile = Resources.Load<TextAsset>(srcFile);
+
         parent = Instantiate(parentModel) as GameObject;
     	parseTbo();
 
@@ -42,11 +40,6 @@ public class generator : MonoBehaviour
     	}
 
         LinkCell();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     private Vector3 stringToFloat(string str)
@@ -67,7 +60,7 @@ public class generator : MonoBehaviour
     void parseTbo()
     {	
     	TextReader reader;
-		reader = new StreamReader(srcfile);
+		reader = new StringReader(mapFile.text);
 
 		reader.ReadLine(); //comment line
 		int lenVertices = int.Parse(reader.ReadLine());
@@ -127,8 +120,9 @@ public class generator : MonoBehaviour
 
     	if (face[5] == -1)
         {
-            child[id].GetComponent<MeshRenderer>().material = pentaMat;
-    		len = 6;
+            child[id].GetComponent<MeshRenderer>().material = materialPenta;
+            child[id].GetComponent<Cell>().isPentagon = true;
+            len = 6;
         }
     	else
         {

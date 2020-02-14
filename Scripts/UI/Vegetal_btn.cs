@@ -6,10 +6,10 @@ using UnityEngine.EventSystems;
 
 public class Vegetal_btn : MonoBehaviour, IPointerClickHandler
 {
-    // Start is called before the first frame update
 	public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Vegetal_btn");
-        click.cellselect.SetAnimal(2);
+        if (eventData.button == PointerEventData.InputButton.Left)
+            UIManager.S.selectedCell.HandleClick(UIManager.ClickEventCodes.PutPlants);
     }
+
 }

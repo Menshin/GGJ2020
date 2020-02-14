@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2448488465616469736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2448488465616469734}
+  - component: {fileID: 2448488465616469735}
+  m_Layer: 0
+  m_Name: MontagneBiome
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2448488465616469734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2448488465616469736}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.011372566, y: 0.1349268, z: -0.10353279}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2448488465616469735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2448488465616469736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85faad67935da9a4ab7f7e6b88e37dd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  biomeName: Montagne
+  deadMat: {fileID: 2100000, guid: 08624b5693cae62438cd424866013c3a, type: 2}
+  aliveMat: {fileID: 2100000, guid: c4ad64bdc66a1924abb5ecd6fb877b49, type: 2}
+  deadSprite: {fileID: 21300000, guid: a70550aa74d57dd48a3e08d26290626c, type: 3}
+  aliveSprite: {fileID: 21300000, guid: 8670df8524f7120428098f02d8f4609a, type: 3}
+  plantsSprite: {fileID: 21300000, guid: 85322c2f21ae82b4986ed601e82b8d54, type: 3}
+  herbivorSprite: {fileID: 21300000, guid: f34ab76ce1f1904429377f33c5d3acf6, type: 3}
+  carnivorSprite: {fileID: 21300000, guid: 36aee71c31ac7b84c9568b8db48ec7a6, type: 3}
+  soundIndex: 3
+  propsModelPrefab: {fileID: 100024, guid: adc6caf8fde702e489960adc98465d60, type: 3}

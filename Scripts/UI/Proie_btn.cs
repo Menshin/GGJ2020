@@ -9,7 +9,7 @@ public class Proie_btn : MonoBehaviour, IPointerClickHandler
     // Start is called before the first frame update
 	public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Proie_btn");
-        click.cellselect.SetAnimal(0);
+        if (eventData.button == PointerEventData.InputButton.Left)
+            UIManager.S.selectedCell.HandleClick(UIManager.ClickEventCodes.PutHerbivors);
     }
 }
